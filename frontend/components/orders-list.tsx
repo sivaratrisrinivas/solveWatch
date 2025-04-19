@@ -9,7 +9,7 @@ export default function OrdersList() {
   const [page, setPage] = useState(1)
   const [pageSize] = useState(10)
   const [loading, setLoading] = useState(false)
-  
+
   // Mock data for orders
   const orders = [
     {
@@ -34,7 +34,7 @@ export default function OrdersList() {
       status: "expired"
     }
   ]
-  
+
   const totalPages = 1
 
   const handlePreviousPage = () => {
@@ -45,13 +45,13 @@ export default function OrdersList() {
     setPage((prev) => Math.min(prev + 1, totalPages))
   }
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleString()
   }
 
-  const truncateAddress = (address) => {
-    if (!address) return ""
+  const truncateAddress = (address: string) => {
+    if (!address) return "N/A"
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
   }
 
@@ -82,13 +82,12 @@ export default function OrdersList() {
                     <TableCell>{`${truncateAddress(order.sellToken)}/${truncateAddress(order.buyToken)}`}</TableCell>
                     <TableCell>
                       <span
-                        className={`px-2 py-1 rounded-full text-xs ${
-                          order.status === "fulfilled"
-                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                            : order.status === "open"
-                              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                              : "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                        }`}
+                        className={`px-2 py-1 rounded-full text-xs ${order.status === "fulfilled"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          : order.status === "open"
+                            ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                            : "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                          }`}
                       >
                         {order.status}
                       </span>
