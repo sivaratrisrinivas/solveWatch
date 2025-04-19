@@ -3,7 +3,7 @@ import { OrderBookApi, SupportedChainId } from "@cowprotocol/cow-sdk"
 // Initialize the OrderBookApi with the appropriate chain ID
 export const orderBookApi = new OrderBookApi({
     chainId: SupportedChainId.GNOSIS_CHAIN, // Using Gnosis Chain for our dashboard
-    env: "production", // Use 'staging' for testing
+    // env: "production", // Temporarily removed due to type issues
 })
 
 // Fetch recent orders (simulating our previous auctions endpoint)
@@ -51,7 +51,8 @@ export async function fetchOrder(orderId: string) {
 // Fetch trades for a specific order
 export async function fetchTrades(orderId: string) {
     try {
-        const trades = await orderBookApi.getTrades(orderId)
+        // Pass orderId as orderUid within an object
+        const trades = await orderBookApi.getTrades({ orderUid: orderId })
         return trades
     } catch (error) {
         console.error(`Error fetching trades for order ${orderId}:`, error)
@@ -59,6 +60,8 @@ export async function fetchTrades(orderId: string) {
     }
 }
 
+// Temporarily commented out due to type issues with 'kind'
+/*
 // Get a quote for a potential trade
 export async function fetchQuote(params: {
     sellToken: string
@@ -79,6 +82,7 @@ export async function fetchQuote(params: {
         throw error
     }
 }
+*/
 
 // Analyze solver performance based on trade data
 export async function analyzeSolverPerformance(trades: any[]) {
