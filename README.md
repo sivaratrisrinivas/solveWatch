@@ -24,7 +24,7 @@ This project was built to offer a clear, accessible window into the operational 
 ```mermaid
 graph TD
     A[User] --> B(Browser - SolveWatch Frontend);
-    B --> C(SolveWatch Backend API (FastAPI));
+    B --> C(SolveWatch Backend API - FastAPI);
     C --> D[CoW Protocol API];
     C --> E(Supabase DB - Planned);
 
@@ -44,7 +44,7 @@ graph TD
 
 ```mermaid
 graph TD
-    subgraph Frontend (Next.js on Vercel)
+    subgraph "Frontend - Next.js on Vercel"
         F_User[User Interaction] --> F_Router(App Router);
         F_Router --> F_Pages(Pages/Layouts);
         F_Pages --> F_Components(React Components);
@@ -54,7 +54,7 @@ graph TD
         F_LibAPI --> B_API(Backend API);
     end
 
-    subgraph Backend (FastAPI on Render)
+    subgraph "Backend - FastAPI on Render"
         B_API --> B_Router(FastAPI Router - main.py);
         B_Router --> B_Endpoints(API Endpoint Functions);
         B_Endpoints --> B_DBModule(Database Module - database.py);
