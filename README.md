@@ -17,6 +17,57 @@ SolveWatch aims to fill this gap by providing a user-friendly interface to:
 
 This project was built to offer a clear, accessible window into the operational side of CoW Protocol's settlement layer.
 
+## Architecture
+
+### High-Level Overview
+
+```mermaid
+graph TD
+    A[User] --> B(Browser - SolveWatch Frontend);
+    B --> C{SolveWatch Backend API (FastAPI)};
+    C --> D[CoW Protocol API];
+    C --> E(Supabase DB - Planned);
+
+    subgraph Vercel Deployment
+        B
+    end
+
+    subgraph Render Deployment
+        C
+    end
+
+    style B fill:#cde4ff,stroke:#333,stroke-width:2px;
+    style C fill:#ccf0df,stroke:#333,stroke-width:2px;
+```
+
+### Low-Level Overview
+
+```mermaid
+graph TD
+    subgraph Frontend (Next.js on Vercel)
+        F_User[User Interaction] --> F_Router(App Router);
+        F_Router --> F_Pages(Pages/Layouts);
+        F_Pages --> F_Components(React Components);
+        F_Components --> F_Shadcn(shadcn/ui & Radix);
+        F_Components --> F_SWR(SWR for Data Fetching);
+        F_SWR --> F_LibAPI(lib/api.ts);
+        F_LibAPI --> B_API{Backend API};
+    end
+
+    subgraph Backend (FastAPI on Render)
+        B_API --> B_Router(FastAPI Router - main.py);
+        B_Router --> B_Endpoints(API Endpoint Functions);
+        B_Endpoints --> B_DBModule(Database Module - database.py);
+        B_DBModule --> B_CowClient(CowProtocolClient);
+        B_CowClient --> Ext_CowAPI[External CoW Protocol API];
+        B_DBModule --> B_Supabase(Supabase Client - Planned);
+        B_Supabase --> Ext_SupabaseDB[External Supabase DB - Planned];
+    end
+
+    style F_Components fill:#cde4ff,stroke:#333;
+    style B_Endpoints fill:#ccf0df,stroke:#333;
+```
+
 ## 🚀 Quick Start
 
 The easiest way to use SolveWatch is via the deployed web application:
