@@ -43,7 +43,7 @@ export default function TokenPairsAnalytics() {
                   </TableCell>
                 </TableRow>
               ) : (
-                tokenPairs?.map((pair) => (
+                tokenPairs?.map((pair: { pair: string; volume: string; trades: number | string; avgSlippage: string; avgGasUsed: string }) => (
                   <TableRow key={pair.pair}>
                     <TableCell className="font-medium">{pair.pair}</TableCell>
                     <TableCell>{pair.volume}</TableCell>
