@@ -31,7 +31,7 @@ export default function TradeVolumeChart() {
       {
         label: "Trade Volume (ETH)",
         data:
-          data?.map((point) => ({
+          data?.map((point: { timestamp: string; volume: number }) => ({
             x: point.timestamp,
             y: point.volume,
           })) || [],
