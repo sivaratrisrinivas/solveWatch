@@ -16,11 +16,11 @@ export default function GasUsageChart() {
 
   // Transform API data for Chart.js
   const chartData = {
-    labels: data?.map((item) => item.name) || [],
+    labels: data?.map((item: { name: string; avgGasUsed: number }) => item.name) || [],
     datasets: [
       {
         label: "Average Gas Used",
-        data: data?.map((item) => item.avgGasUsed) || [],
+        data: data?.map((item: { name: string; avgGasUsed: number }) => item.avgGasUsed) || [],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
