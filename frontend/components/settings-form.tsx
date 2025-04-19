@@ -16,14 +16,14 @@ export default function SettingsForm() {
     notifications: true,
   })
 
-  const handleChange = (field, value) => {
+  const handleChange = (field: keyof typeof settings, value: string | boolean) => {
     setSettings((prev) => ({
       ...prev,
       [field]: value,
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // In a real implementation, this would save the settings
     console.log("Settings saved:", settings)
@@ -51,21 +51,21 @@ export default function SettingsForm() {
             />
           </div>
 
+          {/* Temporarily commented out due to Radix/React build issue */}
+          {/*
           <div className="space-y-2">
-            <Label htmlFor="chain">Blockchain Network</Label>
+            <Label htmlFor="network">Blockchain Network</Label>
             <Select value={settings.chain} onValueChange={(value) => handleChange("chain", value)}>
-              <SelectTrigger id="chain">
+              <SelectTrigger id="network">
                 <SelectValue placeholder="Select network" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="mainnet">Ethereum Mainnet</SelectItem>
                 <SelectItem value="gnosis">Gnosis Chain</SelectItem>
-                <SelectItem value="arbitrum">Arbitrum One</SelectItem>
-                <SelectItem value="base">Base</SelectItem>
-                <SelectItem value="sepolia">Sepolia (Testnet)</SelectItem>
+                <SelectItem value="mainnet">Ethereum Mainnet</SelectItem>
               </SelectContent>
             </Select>
           </div>
+          */}
 
           <div className="flex items-center justify-between">
             <Label htmlFor="darkMode">Dark Mode</Label>
