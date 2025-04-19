@@ -28,9 +28,9 @@ export default function SolverActivityTimeline() {
   // Transform API data for Chart.js
   const chartData = {
     datasets:
-      data?.map((solver, index) => ({
+      data?.map((solver: { solver: string; data: { timestamp: string; trades: number }[] }, index: number) => ({
         label: solver.solver,
-        data: solver.data.map((point) => ({
+        data: solver.data.map((point: { timestamp: string; trades: number }) => ({
           x: point.timestamp,
           y: point.trades,
         })),
