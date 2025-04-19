@@ -24,7 +24,7 @@ This project was built to offer a clear, accessible window into the operational 
 ```mermaid
 graph TD
     A[User] --> B(Browser - SolveWatch Frontend);
-    B --> C{SolveWatch Backend API (FastAPI)};
+    B --> C(SolveWatch Backend API (FastAPI));
     C --> D[CoW Protocol API];
     C --> E(Supabase DB - Planned);
 
@@ -51,7 +51,7 @@ graph TD
         F_Components --> F_Shadcn(shadcn/ui & Radix);
         F_Components --> F_SWR(SWR for Data Fetching);
         F_SWR --> F_LibAPI(lib/api.ts);
-        F_LibAPI --> B_API{Backend API};
+        F_LibAPI --> B_API(Backend API);
     end
 
     subgraph Backend (FastAPI on Render)
