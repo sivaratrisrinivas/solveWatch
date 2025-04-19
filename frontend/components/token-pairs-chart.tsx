@@ -14,11 +14,11 @@ export default function TokenPairsChart() {
   })
 
   const chartData = {
-    labels: data?.map((item) => item.name) || [],
+    labels: data?.map((item: { name: string; value: number }) => item.name) || [],
     datasets: [
       {
         label: "Trade Volume",
-        data: data?.map((item) => item.value) || [],
+        data: data?.map((item: { name: string; value: number }) => item.value) || [],
         backgroundColor: [
           "rgba(53, 162, 235, 0.5)",
           "rgba(75, 192, 192, 0.5)",
